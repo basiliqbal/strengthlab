@@ -8,6 +8,7 @@ const [increment, setIncrement] = useState(5);
 const [showProgram, setShowProgram] = useState(false);
 const [generatedMax, setGeneratedMax] = useState(null);
 const [generatedIncrement, setGeneratedIncrement] = useState(null);
+const [error, setError] = useState("");
 
 const workouts = [
   { day: 1, sets: 6, reps: 6, percentage: 0.70 },
@@ -19,11 +20,14 @@ const workouts = [
 const weeks = [1,2,3]
 
 const handleGenerate = () => {
-  if (Number(max) > 0) {
+  if (Number(max) >= 45 && Number(max) <= 1500 && Number.isInteger(Number(max))) {
     setShowProgram(true);
     setGeneratedMax(Number(max));
     setGeneratedIncrement(increment);
-  }
+    setError("")
+  } else {
+  setError("Please enter a bench press max between 45 and 1500 lbs.");
+}
 };
 
   return (
@@ -47,11 +51,6 @@ value={max}
 onChange={(e) => setMax(e.target.value)}
 />
 
-<button onClick={handleGenerate}> Generate program </button>
-
-{Number(max) > 0 && showProgram && (
-<>
-<p> Your current max is: {max}</p>
 
 <select
 value={increment}
@@ -61,7 +60,19 @@ onChange={(e) => setIncrement(Number(e.target.value))}
   <option value="10">+10 lbs</option>
 </select>
 
-  
+
+<button onClick={handleGenerate}> Generate program </button>
+
+{error && (
+  <p>
+    {error}
+  </p>
+)}
+
+{Number(generatedMax) > 0 && showProgram && (
+<>
+<p> Your current max is: {generatedMax}</p>
+
   
 {weeks.map((week) => (
   <div key={week}>
