@@ -4,7 +4,10 @@ import { useState } from "react";
 const Home = () => {
 
 const [max, setMax] = useState("");
-
+const [increment, setIncrement] = useState(5);
+const [showProgram, setShowProgram] = useState(false);
+const [generatedMax, setGeneratedMax] = useState(null);
+const [generatedIncrement, setGeneratedIncrement] = useState(null);
 
 const workouts = [
   { day: 1, sets: 6, reps: 6, percentage: 0.70 },
@@ -15,6 +18,13 @@ const workouts = [
 
 const weeks = [1,2,3]
 
+const handleGenerate = () => {
+  if (Number(max) > 0) {
+    setShowProgram(true);
+    setGeneratedMax(Number(max));
+    setGeneratedIncrement(increment);
+  }
+};
 
   return (
 <main >
@@ -37,11 +47,19 @@ value={max}
 onChange={(e) => setMax(e.target.value)}
 />
 
-{Number(max) > 0 && (
+<button onClick={handleGenerate}> Generate program </button>
 
-
+{Number(max) > 0 && showProgram && (
 <>
 <p> Your current max is: {max}</p>
+
+<select
+value={increment}
+onChange={(e) => setIncrement(Number(e.target.value))}
+>
+  <option value="5">+5 lbs</option>
+  <option value="10">+10 lbs</option>
+</select>
 
   
   
@@ -54,7 +72,7 @@ onChange={(e) => setMax(e.target.value)}
 {workouts.map((workout) => (
       <p key={workout.day}>
       
-      Day{workout.day}: {workout.sets} sets x {workout.reps} reps at {Math.round((max * workout.percentage) / 5) * 5 + (week - 1) * 5} lbs
+      Day{workout.day}: {workout.sets} sets x {workout.reps} reps at {Math.round((generatedMax * workout.percentage) / 5) * 5 + (week - 1) * generatedIncrement} lbs
         
       </p>
       
