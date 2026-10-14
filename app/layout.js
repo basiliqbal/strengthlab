@@ -1,10 +1,19 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default function RootLayout({ children }) {
   return (
-    <html>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body className="flex min-h-screen flex-col">
+        <Navbar />
+
+        <div className="flex-1">
+          {children}
+        </div>
+
+        <Footer />
+      </body>
     </html>
   );
 }

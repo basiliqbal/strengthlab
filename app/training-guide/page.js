@@ -82,35 +82,82 @@ const instructions = [
   }
 ];
 
+
 const TrainingGuide = () => {
   return (
-    <main>
-      <h1>Smolov Jr. Training Guide</h1>
+    <main className="mx-auto max-w-6xl px-5 py-14 md:py-20">
 
-      <p>
-        Learn how to train, recover, and manage accessory exercises
-        during your three-week Smolov Jr. bench press program.
-      </p>
+      {/* Page Header */}
+      <div className="mb-12">
+        <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-[#D62828]">
+          Training Resources 
+        </p>
 
-      {instructions.map((instruction) => (
-        <section key={instruction.title}>
-          <h2>{instruction.title}</h2>
+        <h1 className="mb-4 text-4xl font-black uppercase tracking-tight text-white md:text-6xl">
+          Train <span className="text-[#D62828]">Smarter.</span>
+        </h1>
 
-          <p>{instruction.description}</p>
+        <p className="max-w-2xl text-base leading-relaxed text-gray-400">
+          Learn how to manage training intensity, accessory exercises,
+          and recovery throughout your Smolov Jr. bench press program.
+        </p>
+      </div>
 
-          <ul>
-            {instruction.tips.map((tip) => (
-              <li key={tip}>{tip}</li>
-            ))}
-          </ul>
-        </section>
-      ))}
+      {/* Training Instructions */}
+      <div className="grid gap-5 md:grid-cols-2">
+        {instructions.map((instruction, index) => (
+          <section
+            key={instruction.title}
+            className="border border-white/10 bg-[#1C1E21] p-6 transition-colors hover:border-[#D62828]/50 md:p-8"
+          >
+            <div className="mb-5 flex items-center gap-4">
+              <span className="text-sm font-black text-[#D62828]">
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
-      <p>
-        Disclaimer: This guide provides general training information,
-        not individualized medical or coaching advice. Adjust training
-        to your experience, recovery, and physical condition.
-      </p>
+              <h2 className="text-xl font-bold uppercase tracking-tight text-white">
+                {instruction.title}
+              </h2>
+            </div>
+
+            <p className="mb-6 text-sm leading-7 text-gray-400">
+              {instruction.description}
+            </p>
+
+            <ul className="space-y-4">
+              {instruction.tips.map((tip) => (
+                <li
+                  key={tip}
+                  className="flex items-start gap-3 text-sm leading-6 text-gray-300"
+                >
+                  <span
+                    className="mt-1 font-bold text-[#D62828]"
+                    aria-hidden="true"
+                  >
+                    /
+                  </span>
+
+                  <span>{tip}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+
+      {/* Disclaimer */}
+      <div className="mt-10 border-l-4 border-[#D62828] bg-[#1C1E21] p-6">
+        <h3 className="mb-2 text-sm font-bold uppercase tracking-wider text-white">
+          Important Training Notice
+        </h3>
+
+        <p className="text-sm leading-7 text-gray-400">
+          Smolov Jr. is a demanding training program and may not be
+          appropriate for beginners or lifters with active injuries.
+          This guide provides general educational information,
+          not individualized medical or coaching advice.
+        </p>
+      </div>
     </main>
   );
 };
