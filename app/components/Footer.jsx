@@ -24,6 +24,11 @@ const Footer = () => {
           <Link href="/training-guide" className="transition hover:text-white">
             Training Guide
           </Link>
+
+          <Link href="/programs"
+                    className="transition hover:text-white">
+                        My Programs
+                    </Link>
         </div>
 
         <p className="text-xs text-gray-500">
