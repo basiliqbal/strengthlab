@@ -163,7 +163,14 @@ Program weights are calculated using the selected 1RM, prescribed training perce
 
 ## Screenshots
 
-Screenshots of the calculator, workout schedule, and saved programs interface will be added here.
+### Program Calculator
+![StrengthLab Calculator](screenshots/calculator.png)
+
+### Workout Schedule
+![Smolov Jr Workout Schedule](screenshots/workout-schedule.png)
+
+### My Programs
+![Saved Programs](screenshots/my-programs.png)
 
 ## Project Status
 
